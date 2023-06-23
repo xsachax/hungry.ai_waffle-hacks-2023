@@ -1,11 +1,14 @@
 import { useState } from "react";
+import Prompt from "../Prompt/Prompt.tsx";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  //const [count, setCount] = useState(0);
 
   return (
     <>
+      <Prompt />
+      {/* 
       <div className="app">
         <h1 className="text-3xl font-bold">Hello World</h1>
         <button
@@ -15,6 +18,7 @@ function App() {
           count is {count}
         </button>
       </div>
+      */}
     </>
   );
 }
