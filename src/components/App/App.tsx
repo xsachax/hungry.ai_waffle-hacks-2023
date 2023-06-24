@@ -7,8 +7,9 @@ function App() {
 
   return (
     <>
-      <Prompt />
-      {/* 
+      <div className="flex w-full m-auto">
+        <Prompt />
+        {/* 
       <div className="app">
         <h1 className="text-3xl font-bold">Hello World</h1>
         <button
@@ -19,6 +20,7 @@ function App() {
         </button>
       </div>
       */}
+      </div>
     </>
   );
 }
