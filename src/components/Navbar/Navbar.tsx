@@ -4,10 +4,10 @@ import "./Navbar.css";
 function Navbar() {
 	return (
 		<>
-			<div className='h-28 w-23/24 rounded-3xl bg-neutral-900 mx-auto sticky top-4 flex align-center justify-between gap-6'>
+			<div className='h-28 rounded-3xl bg-slate-900 mx-auto sticky top-4 flex align-center justify-between gap-6 mr-5 ml-5 mb-10'>
 				<div className='leftside flex align-center justify-center'>
-					<ul className='navbar-links pt-7 pl-10'>
-						<li className='navButtons'>
+					<ul className='navbar-links pl-5'>
+						<li className='pt-5 pl-2'>
 							<Link
 								className=''
 								activeClass='active'
@@ -18,7 +18,11 @@ function Navbar() {
 								duration={500}
 								href='#hero'
 							>
-								Logo
+								<img
+									className='navLogo'
+									src='/Asset/Hungry.Ai.png'
+									alt='Description of the image'
+								/>
 							</Link>
 						</li>
 					</ul>
