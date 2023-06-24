@@ -6,17 +6,17 @@ import Hero from "../Hero/Hero.tsx";
 import Footer from "../Footer/Footer.tsx";
 
 function App() {
-  //const [count, setCount] = useState(0);
+	//const [count, setCount] = useState(0);
 
-  return (
-    <>
-      <div className="flex w-full">
-        <Prompt />
-        <Footer />
-
-      </div>
-    </>
-  );
+	return (
+		<>
+			<div className='column w-full'>
+				<Navbar />
+				<Prompt />
+				<Footer />
+			</div>
+		</>
+	);
 }
 
 export default App;
