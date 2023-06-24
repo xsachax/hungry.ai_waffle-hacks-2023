@@ -1,0 +1,20 @@
+
+.marketing-footer {
+  background-color: #ffc400;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.footer-content h3 {
+  color: #333;
+}
+
+.footer-content p {
+  color: #666;
+  margin: 5px 0;
+}
