@@ -6,7 +6,7 @@ function Prompt() {
   const [showingResponse, setShowingResponse] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [fieldValue, setFieldValue] = useState("");
-  const [keyWords, setKeyWords] = useState([]); // [Pizza, Fast-food, ~15$...
+  const [keyWords, setKeyWords] = useState<string[]>([]); // [Pizza, Fast-food, ~15$...
   const [prompt, setPrompt] = useState("");
 
   const fillerWords = [
