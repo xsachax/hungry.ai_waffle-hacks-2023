@@ -172,10 +172,12 @@ function Prompt() {
                 <div className="flex my-2 justify-center h-16 gap-2">
                   <input
                     type="text"
+                    id="customAnswer"
+                    value={fieldValue}
                     placeholder="Custom answer: "
                     className="border border-black border-1 rounded-xl text-center py-8 px-2"
-                    onChange={() => {
-                      setFieldValue(value);
+                    onChange={(e) => {
+                      setFieldValue(e.target.value);
                     }}
                   ></input>
                   <button
@@ -186,6 +188,7 @@ function Prompt() {
                         ...keyWords,
                         fieldValue != "" ? fieldValue : "Food",
                       ]);
+                      setFieldValue("");
                       handleAnswerOptionClick();
                     }}
                   >
