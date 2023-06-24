@@ -1,6 +1,16 @@
 
 .marketing-footer {
-  background-color: #ffc400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+.marketing-footer {
+  background-color: #1e1803;
   padding: 20px;
   text-align: center;
 }
@@ -15,6 +25,32 @@
 }
 
 .footer-content p {
-  color: #666;
-  margin: 5px 0;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 18px;
+  color: #ffc400;
+  background-color: #878787;
+  padding: 10px;
+  border: 5px solid #504f4f;
+  border-radius: 10px;
+}
+
+
+.jumping-effect {
+  transition: transform 0.3s ease;
+}
+
+.jump {
+  animation: jumpAnimation 0.6s ease-in-out;
+}
+
+@keyframes jumpAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
