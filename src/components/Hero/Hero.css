@@ -1,12 +1,29 @@
-.CircularProgressbar-path {
-	stroke: red;
+.Bouton {
+	transition: box-shadow 0.5s;
 }
-.CircularProgressbar-trail {
-	stroke: gray;
+
+.Bouton:hover {
+	-webkit-box-shadow: inset 200px 0 0 0 #b9a232;
+	box-shadow: inset 200px 0 0 0 #b9a232;
 }
-.CircularProgressbar-text {
-	fill: yellow;
+
+.Bouton-submit {
+	transition: box-shadow 0.5s;
 }
-.CircularProgressbar-background {
-	fill: green;
+
+.Bouton-submit:hover {
+	-webkit-box-shadow: inset 200px 0 0 0 #4ac55e;
+	box-shadow: inset 200px 0 0 0 #4ac55e;
+}
+
+.optionSelector {
+	box-shadow: 2px 4px 18px #000000;
+	margin: 4vw;
+	padding: 1vw;
+}
+
+.displayCanvas {
+	box-shadow: 2px 4px 18px #000000;
+	margin: 4vw;
+	padding: 1vw;
 }

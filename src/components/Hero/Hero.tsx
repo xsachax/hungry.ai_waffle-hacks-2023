@@ -5,7 +5,6 @@ import Prediction from "../DrawGame/Prediction.jsx";
 import Result from "../Result/Result.tsx";
 import "./Hero.css";
 import {
-	CircularProgressbar,
 	buildStyles,
 	CircularProgressbarWithChildren,
 } from "react-circular-progressbar";
@@ -209,7 +208,7 @@ function Hero() {
 					{showingResponseTrigger ? (
 						<div className='flex answer-buttons flex-wrap justify-center'>
 							<button
-								className='flex border bg-slate-200 border-slate-200 rounded-xl h-12 hover:bg-slate-300 m-1 px-8 items-center justify-center'
+								className='Bouton flex border bg-slate-200 border-slate-200 rounded-xl h-12 hover:bg-slate-300 m-1 px-8 items-center justify-center'
 								type='button'
 								onClick={() => {
 									testRequestResponse();
@@ -218,7 +217,7 @@ function Hero() {
 								Show Request
 							</button>
 							<button
-								className='flex border bg-slate-200 border-slate-200 rounded-xl h-12 hover:bg-slate-300 m-1 px-8 items-center justify-center'
+								className='Bouton flex border bg-slate-200 border-slate-200 rounded-xl h-12 hover:bg-slate-300 m-1 px-8 items-center justify-center'
 								type='button'
 								onClick={resetRequest}
 							>
@@ -237,7 +236,7 @@ function Hero() {
 											return (
 												<li key={answerOption.answerText}>
 													<button
-														className='flex border bg-slate-200 border-slate-200 rounded-xl h-12 hover:bg-slate-300 m-1 px-8 items-center justify-center'
+														className='Bouton flex border bg-yellow-100 border-slate-200 rounded-xl h-12 hover:bg-slate-300 m-1 px-8 items-center justify-center'
 														type='button'
 														onClick={() => {
 															setKeyWords([
@@ -258,7 +257,7 @@ function Hero() {
 								<div className='flex my-2 h-12 gap-2 justify-center flex-wrap'>
 									{showBack ? (
 										<button
-											className='border border-black border-1 rounded-xl px-6 text-center h-12 bg-red-300 hover:bg-red-400'
+											className='Bouton border border-black border-1 rounded-xl px-6 text-center h-12 bg-red-300 hover:bg-red-400'
 											type='button'
 											onClick={goBack}
 										>
@@ -279,7 +278,7 @@ function Hero() {
 									></input>
 									<button
 										type='button'
-										className='border border-black border-1 rounded-xl px-6 text-center h-12 bg-green-300 hover:bg-green-400'
+										className='Bouton-submit border border-black border-1 rounded-xl px-6 text-center h-12 bg-green-300 hover:bg-green-400'
 										onClick={() => {
 											setKeyWords([
 												...keyWords,
