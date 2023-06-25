@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
+import DrawGame from "../DrawGame/DrawGame.jsx";
 
 function Prompt() {
   //const [response, setResponse] = useState("");
@@ -8,6 +9,7 @@ function Prompt() {
   const [fieldValue, setFieldValue] = useState("");
   const [keyWords, setKeyWords] = useState<string[]>([]); // [Pizza, Fast-food, ~15$...
   const [prompt, setPrompt] = useState("");
+  const [showDraw, setShowDraw] = useState(true);
 
   const fillerWords = [
     "Give me the top 3 best places to eat ",
@@ -85,6 +87,12 @@ function Prompt() {
   };
   */
 
+  const goBack = () => {
+    setCurrentQuestion(currentQuestion - 1);
+    setFieldValue("");
+    setKeyWords([...keyWords.slice(0, -1)]);
+  };
+
   const resetRequest = () => {
     setShowingResponse(false);
     setCurrentQuestion(0);
@@ -103,10 +111,15 @@ function Prompt() {
     console.log("clicked");
   };
 
+  const handleDrawOptionSelected = (prediction) => {
+    setKeyWords([...keyWords, prediction]);
+    handleAnswerOptionClick();
+  };
+
   return (
     <>
       <div className="w-full">
-        <div className="displayCanvas border-gray-200 border-8 rounded-xl bg-gray-100 h-96 m-4">
+        <div className="displayCanvas border-slate-600 border-8 rounded-xl bg-slate-500 m-4">
           <div className="content flex w-full h-full p-8 justify-center items-center">
             {showingResponse ? (
               <>
@@ -114,16 +127,22 @@ function Prompt() {
               </>
             ) : (
               <>
-                <div className="calculating text-3xl font-thin">...</div>
+                <div className="calculating">
+                  {showDraw ? (
+                    <DrawGame handleClick={handleDrawOptionSelected} />
+                  ) : (
+                    <div className="calculateText">Calculating...</div>
+                  )}
+                </div>
               </>
             )}
           </div>
         </div>
-        <div className="optionSelector w-11/12 mx-auto my-4 justify-center rounded-xl bg-gray-100 px-10 py-4">
+        <div className="optionSelector w-11/12 mx-auto my-4 justify-center rounded-xl bg-slate-500 border-8 border-slate-600 px-10 py-4">
           {showingResponse ? (
             <div className="flex answer-buttons flex-wrap justify-center">
               <button
-                className="flex border border-black rounded-lg h-16 hover:bg-slate-200 m-1 px-6 items-center justify-center"
+                className="flex border bg-slate-200 border-slate-200 rounded-xl h-12 hover:bg-slate-300 m-1 px-8 items-center justify-center"
                 type="button"
                 onClick={() => {
                   testRequestResponse();
@@ -132,7 +151,7 @@ function Prompt() {
                 Show Request
               </button>
               <button
-                className="flex border border-black rounded-lg h-16 hover:bg-slate-200 m-1 px-6 items-center justify-center"
+                className="flex border bg-slate-200 border-slate-200 rounded-xl h-12 hover:bg-slate-300 m-1 px-8 items-center justify-center"
                 type="button"
                 onClick={resetRequest}
               >
@@ -151,7 +170,7 @@ function Prompt() {
                       return (
                         <li key={answerOption.answerText}>
                           <button
-                            className="flex border border-black rounded-lg h-16 hover:bg-slate-200 m-1 px-8 items-center justify-center"
+                            className="flex border bg-slate-200 border-slate-200 rounded-xl h-12 hover:bg-slate-300 m-1 px-8 items-center justify-center"
                             type="button"
                             onClick={() => {
                               setKeyWords([
@@ -169,20 +188,27 @@ function Prompt() {
                   )}
                 </ul>
 
-                <div className="flex my-2 justify-center h-16 gap-2">
+                <div className="flex my-2 h-12 gap-2 justify-center flex-wrap">
+                  <button
+                    className="border border-black border-1 rounded-xl px-6 text-center h-12 bg-red-300 hover:bg-red-400"
+                    type="button"
+                    onClick={goBack}
+                  >
+                    Back
+                  </button>
                   <input
                     type="text"
                     id="customAnswer"
                     value={fieldValue}
                     placeholder="Custom answer: "
-                    className="border border-black border-1 rounded-xl text-center py-8 px-2"
+                    className="border border-black border-1 rounded-xl text-center py-2 px-2"
                     onChange={(e) => {
                       setFieldValue(e.target.value);
                     }}
                   ></input>
                   <button
                     type="button"
-                    className="border border-black border-1 rounded-xl px-6 text-center h-16 hover:bg-slate-200"
+                    className="border border-black border-1 rounded-xl px-6 text-center h-12 bg-green-300 hover:bg-green-400"
                     onClick={() => {
                       setKeyWords([
                         ...keyWords,
