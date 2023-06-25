@@ -25,7 +25,7 @@ const Prediction = ({ theCanvas, model, handleClick }) => {
           })
           .catch((e) => console.log("error: ", e));
       }
-    }, 2000);
+    }, 1500);
     return () => {
       clearInterval(timer);
     };

@@ -2,15 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-	--main-color: #2f2f2f;
-	--main-color-dark: #1f1f1f;
-}
-
 body {
-	background-color: rgb(51 65 85);
-}
-
-html {
-	margin: 0;
+  background-color: rgb(51 65 85);
 }

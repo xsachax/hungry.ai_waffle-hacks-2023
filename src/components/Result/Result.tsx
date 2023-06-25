@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "./Result.css";
+import pin from "../../assets/pin.png";
+import star from "../../assets/star.png";
 
-function Result(prompt) {
+function Result() {
+  //const colors = ["#f7a1a9", "#9ea9f7", "#fad791", "#b697fc", "#f7c183"];
   const dummyData = [
     {
       name: "Sansotei Ramen",
@@ -30,15 +33,58 @@ function Result(prompt) {
   ];
 
   return (
-    <div className="results-container border border-red-600">
-      {dummyData.map((i) => {
+    <div className="flex gap-2 p-4 justify-center items-start">
+      {dummyData.map((restaurant, index) => {
         return (
-          <div className="column border border-slate-500 bg-slate-400 p-6 w-full text-black">
-            <h1>{i.name}</h1>
-            <h2>{i.address}</h2>
-            <h3>{i.website}</h3>
-            <h4>{i.review}</h4>
-            <h5>{i.rating}</h5>
+          <div
+            className={
+              "w-80 border-8 rounded-xl text-left border-slate-300 text-black bg-slate-200 flex-wrap" /*+
+              (index === 0
+                ? " bg-card1"
+                : index === 1
+                ? " bg-card2"
+                : index === 2
+                ? " bg-card3"
+                : "bg-slate-300")*/
+            }
+          >
+            {restaurant.rating ? (
+              <div className="flex gap-1 items-center justify-end p-2">
+                <p className="text-lg">{restaurant.rating}/10</p>
+
+                <img
+                  className="aspect-square"
+                  src={star}
+                  alt="star"
+                  width={22}
+                />
+              </div>
+            ) : null}
+            <div className="gap-4 px-6 pb-6 pt-2 grid grid-cols-1 ">
+              <p className="text-xl font-bold">{restaurant.name}</p>
+              {restaurant.address ? (
+                <div className="flex gap-2">
+                  <div className=" w-16">
+                    <img
+                      className="aspect-square my-1"
+                      src={pin}
+                      alt="pin"
+                      width={30}
+                      height={30}
+                    />
+                  </div>
+                  <p className="text-md text-blue-900">{restaurant.address}</p>
+                </div>
+              ) : null}
+              {restaurant.website ? (
+                <p className="text-md italic underline">{restaurant.website}</p>
+              ) : null}
+              {restaurant.review ? (
+                <div className="border-2 border-slate-400 rounded-xl bg-slate-300 p-4">
+                  <p className="text-sm">Top Review: {restaurant.review}</p>
+                </div>
+              ) : null}
+            </div>
           </div>
         );
       })}

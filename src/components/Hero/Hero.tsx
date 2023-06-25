@@ -12,6 +12,7 @@ const ref = React.createRef();
 function Hero() {
   //const [response, setResponse] = useState("");
   const [showingResponse, setShowingResponse] = useState(false);
+  const [showingResponseTrigger, setShowingResponseTrigger] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [fieldValue, setFieldValue] = useState("");
   const [keyWords, setKeyWords] = useState<string[]>([]); // [Pizza, Fast-food, ~15$...
@@ -77,6 +78,7 @@ function Hero() {
       newPrompt += fillerWords[i] + keyWords[i].toLowerCase();
     }
     setPrompt(newPrompt);
+    setShowingResponse(true);
   };
 
   /*
@@ -107,6 +109,7 @@ function Hero() {
 
   const resetRequest = () => {
     setShowingResponse(false);
+    setShowingResponseTrigger(false);
     setCurrentQuestion(0);
     setFieldValue("");
     setKeyWords([]);
@@ -122,7 +125,7 @@ function Hero() {
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
     } else {
-      setShowingResponse(true);
+      setShowingResponseTrigger(true);
     }
   };
 
@@ -166,7 +169,7 @@ function Hero() {
           </div>
         </div>
         <div className="optionSelector w-11/12 mx-auto my-4 justify-center rounded-xl bg-slate-500 border-8 border-slate-600 px-10 py-4">
-          {showingResponse ? (
+          {showingResponseTrigger ? (
             <div className="flex answer-buttons flex-wrap justify-center">
               <button
                 className="flex border bg-slate-200 border-slate-200 rounded-xl h-12 hover:bg-slate-300 m-1 px-8 items-center justify-center"
