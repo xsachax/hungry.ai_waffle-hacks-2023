@@ -9,9 +9,9 @@ function App() {
   return (
     <>
       <div className="column w-full m-auto border-gray-600 border-8 rounded-2xl bg-gray-700 p-8">
-        {/*<Navbar />*/}
+        <Navbar />
         <Hero />
-        {/*<Footer />*/}
+        <Footer />
       </div>
     </>
   );

@@ -1,40 +1,45 @@
 .Bouton {
-	transition: box-shadow 0.5s;
+  transition: box-shadow 0.5s;
 }
 
 .Bouton:hover {
-	-webkit-box-shadow: inset 200px 0 0 0 #b93232;
-	box-shadow: inset 200px 0 0 0 #b93232;
+  -webkit-box-shadow: inset 200px 0 0 0 #b9a232;
+  box-shadow: inset 200px 0 0 0 #b9a232;
 }
 
 .Bouton-submit {
-	transition: box-shadow 0.5s;
+  transition: box-shadow 0.5s;
 }
 
 .Bouton-submit:hover {
-	-webkit-box-shadow: inset 200px 0 0 0 #4ac55e;
-	box-shadow: inset 200px 0 0 0 #4ac55e;
+  -webkit-box-shadow: inset 200px 0 0 0 #4ac55e;
+  box-shadow: inset 200px 0 0 0 #4ac55e;
 }
 
 .optionSelector {
-	box-shadow: 2px 4px 18px #000000;
-	margin: 4vw;
-	padding: 1vw;
-	width: 98%;
+  box-shadow: 2px 4px 18px #000000;
+  margin: 4vw;
+  padding: 1vw;
 }
 
 .displayCanvas {
-	box-shadow: 2px 4px 18px #000000;
-	margin: 4vw;
-	padding: 1vw;
+  box-shadow: 2px 4px 18px #000000;
+  margin: 4vw;
+  padding: 1vw;
+}
+
+@media screen and (max-width: 768px) {
+  .question-section {
+    height: 300px;
+  }
 }
 
 .question-text {
-	border-radius: 100px;
-	display: flex;
-	text-align: center;
-	justify-content: center;
-	padding-top: 20px;
-	background-color: white;
-	box-shadow: 2px 4px 5px #000000;
+  border-radius: 100px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding-top: 20px;
+  background-color: white;
+  box-shadow: 2px 4px 5px #000000;
 }

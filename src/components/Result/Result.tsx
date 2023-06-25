@@ -9,13 +9,13 @@ const Result = (data) => {
   const arr = JSON.parse(data);
 
   return (
-    <div className="flex gap-2 p-4 justify-center items-start flex-wrap">
+    <div className="flex gap-4 p-4 justify-center items-start flex-wrap">
       {arr == null ? (
         <div></div>
       ) : (
         arr.map((restaurant) => {
           return (
-            <li key={restaurant.name} className="list-none">
+            <li key={restaurant.name} className="list-none card">
               <div
                 className={
                   "w-80 border-8 rounded-xl text-left border-slate-300 text-black bg-slate-200 flex-wrap"
