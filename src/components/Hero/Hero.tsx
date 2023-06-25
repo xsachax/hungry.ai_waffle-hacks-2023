@@ -4,25 +4,23 @@ import { Canvas } from "../DrawGame/Canvas.jsx";
 import Prediction from "../DrawGame/Prediction.jsx";
 import Result from "../Result/Result.tsx";
 import "./Hero.css";
-
 import * as tf from "@tensorflow/tfjs";
 const model = tf.loadLayersModel("./model/model.json");
 const ref = React.createRef();
 
 function Hero() {
-  //const [response, setResponse] = useState("");
+  const [response, setResponse] = useState([]);
   const [showingResponse, setShowingResponse] = useState(false);
   const [showingResponseTrigger, setShowingResponseTrigger] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [fieldValue, setFieldValue] = useState("");
-  const [keyWords, setKeyWords] = useState<string[]>([]); // [Pizza, Fast-food, ~15$...
-  const [prompt, setPrompt] = useState("");
+  const [keyWords, setKeyWords] = useState<string>([]); // [Pizza, Fast-food, ~15$...
   const [showDraw, setShowDraw] = useState(true);
   const [showBack, setShowBack] = useState(false);
 
   const fillerWords = [
-    "Give me the top 3 best places to eat ",
-    " that are  ",
+    "Give me the best places to eat ",
+    " that are ",
     ", where the price per plate is ",
     " in downtown ",
   ];
@@ -70,32 +68,47 @@ function Hero() {
   const configuration = new Configuration({
     apiKey: openAI_key,
   });
+  delete configuration.baseOptions.headers["User-Agent"];
   const openai = new OpenAIApi(configuration);
 
-  const testRequestResponse = () => {
+  async function generatePrompt() {
     let newPrompt = "";
     for (let i = 0; i < keyWords.length; i++) {
       newPrompt += fillerWords[i] + keyWords[i].toLowerCase();
     }
-    setPrompt(newPrompt);
-    setShowingResponse(true);
-  };
+    (newPrompt +=
+      ". Format the answer in a one-line json as a numbered list where each restaurant has a name, address, website, review around 150 characters, and rating out of 10. Give me 2 options."),
+      console.log(newPrompt);
+    requestResponse(newPrompt);
+  }
 
-  /*
-  const requestResponse = async () => {
-    const answer = await openai.createCompletion({
+  async function requestResponse(p) {
+    const apiBody = {
       model: "text-davinci-003",
-      prompt: "How many days are in a year?",
+      prompt: p,
       temperature: 0,
-      max_tokens: 5,
+      max_tokens: 900,
       top_p: 1,
       frequency_penalty: 0.0,
       presence_penalty: 0.0,
-    });
+    };
 
-    setResponse(answer.data.choices[0].text);
-  };
-  */
+    await fetch("https://api.openai.com/v1/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${openAI_key}`,
+      },
+      body: JSON.stringify(apiBody),
+    })
+      .then((d) => {
+        return d.json();
+      })
+      .then((d) => {
+        setShowingResponse(true);
+        setResponse(d.choices[0].text.trim());
+      });
+  }
 
   const goBack = () => {
     setCurrentQuestion(currentQuestion - 1);
@@ -142,9 +155,9 @@ function Hero() {
             {showingResponse ? (
               <>
                 <div className="response">
-                  <div className="promptText">{prompt}</div>
+                  <div className="promptText"></div>
                   <div className="content">
-                    <Result />
+                    {<Result data={response == [] ? null : response} />}
                   </div>
                 </div>
               </>
@@ -161,7 +174,7 @@ function Hero() {
                       />
                     </div>
                   ) : (
-                    <div className="calculateText h-96">Calculating...</div>
+                    <div className="calculateText h-96"></div>
                   )}
                 </div>
               </>
@@ -174,9 +187,7 @@ function Hero() {
               <button
                 className="flex border bg-slate-200 border-slate-200 rounded-xl h-12 hover:bg-slate-300 m-1 px-8 items-center justify-center"
                 type="button"
-                onClick={() => {
-                  testRequestResponse();
-                }}
+                onClick={generatePrompt}
               >
                 Show Request
               </button>
