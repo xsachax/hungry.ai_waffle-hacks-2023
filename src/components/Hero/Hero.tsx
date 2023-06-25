@@ -4,6 +4,12 @@ import { Canvas } from "../DrawGame/Canvas.jsx";
 import Prediction from "../DrawGame/Prediction.jsx";
 import Result from "../Result/Result.tsx";
 import "./Hero.css";
+import {
+  buildStyles,
+  CircularProgressbarWithChildren,
+} from "react-circular-progressbar";
+import loading from "../../assets/loading.gif";
+
 import * as tf from "@tensorflow/tfjs";
 const model = tf.loadLayersModel("./model/model.json");
 const ref = React.createRef();
@@ -17,6 +23,7 @@ function Hero() {
   const [keyWords, setKeyWords] = useState<string>([]); // [Pizza, Fast-food, ~15$...
   const [showDraw, setShowDraw] = useState(true);
   const [showBack, setShowBack] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const fillerWords = [
     "Give me the best places to eat ",
@@ -118,6 +125,7 @@ function Hero() {
       setShowDraw(true);
       setShowBack(false);
     }
+    setProgress(progress - 25);
   };
 
   const resetRequest = () => {
@@ -129,6 +137,7 @@ function Hero() {
     setPrompt("");
     setShowDraw(true);
     setShowBack(false);
+    setProgress(0);
   };
 
   const handleAnswerOptionClick = () => {
@@ -140,6 +149,7 @@ function Hero() {
     } else {
       setShowingResponseTrigger(true);
     }
+    setProgress(progress + 25);
   };
 
   const handleDrawOptionSelected = (prediction) => {
@@ -174,7 +184,34 @@ function Hero() {
                       />
                     </div>
                   ) : (
-                    <div className="calculateText h-96"></div>
+                    <div className="calculateText h-96">
+                      <CircularProgressbarWithChildren
+                        className="progressbar flex align-center justify-center h-96"
+                        value={progress}
+                        //text={`${progress}%`}
+                        styles={buildStyles({
+                          strokeLinecap: "round",
+                          textSize: "16px",
+                          pathTransitionDuration: 0.5,
+                          pathColor: `rgba(255, 212, 105, ${progress / 100})`,
+                          textColor: "#f88",
+                          trailColor: "#d6d6d6",
+                          backgroundColor: "#3e98c7",
+                        })}
+                      >
+                        {/* Put any JSX content in here that you'd like. It'll be vertically and horizonally centered. */}
+                        <img
+                          style={{
+                            width: 200,
+                            marginTop: -60,
+                            marginRight: 30,
+                          }}
+                          src={loading}
+                          alt="loading"
+                        />
+                      </CircularProgressbarWithChildren>
+                      ;
+                    </div>
                   )}
                 </div>
               </>
@@ -232,7 +269,7 @@ function Hero() {
                 <div className="flex my-2 h-12 gap-2 justify-center flex-wrap">
                   {showBack ? (
                     <button
-                      className="border border-black border-1 rounded-xl px-6 text-center h-12 bg-red-300 hover:bg-red-400"
+                      className="Bouton border border-black border-1 rounded-xl px-6 text-center h-12 bg-red-300 hover:bg-red-400"
                       type="button"
                       onClick={goBack}
                     >
@@ -253,7 +290,7 @@ function Hero() {
                   ></input>
                   <button
                     type="button"
-                    className="border border-black border-1 rounded-xl px-6 text-center h-12 bg-green-300 hover:bg-green-400"
+                    className="Bouton-submit border border-black border-1 rounded-xl px-6 text-center h-12 bg-green-300 hover:bg-green-400"
                     onClick={() => {
                       setKeyWords([
                         ...keyWords,
