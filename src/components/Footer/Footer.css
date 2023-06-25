@@ -1,0 +1,39 @@
+.marketing-footer {
+  background-color: rgb(15 23 42);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 16px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  position: static;
+}
+
+.footer-content {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.footer-content p {
+  font-size: 18px;
+  color: #ffc400;
+  padding: 10px;
+  text-align: center;
+}
+
+.LogoImg {
+  width: 200px;
+  height: auto;
+}
+
+@media screen and (max-width: 1200px) {
+  .footer-logo {
+    display: none;
+  }
+  .footer-content {
+    justify-content: center;
+  }
+}

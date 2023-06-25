@@ -1,0 +1,28 @@
+.navButtons {
+  display: flex;
+  height: auto;
+  width: auto;
+  text-align: center;
+  padding: 6px;
+  color: white;
+  font-size: xx-large;
+  background-color: inherit;
+  border-color: rgb(15 23 42);
+  border-width: 2px;
+  border-radius: 0.5rem;
+}
+
+.link {
+  text-decoration: none;
+  color: #ffc400;
+}
+.link:hover {
+  text-decoration: underline;
+  color: orange;
+}
+
+@media screen and (max-width: 1200px) {
+  .navButtons {
+    display: none;
+  }
+}
