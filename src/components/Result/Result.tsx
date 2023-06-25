@@ -51,7 +51,7 @@ const Result = (data) => {
             <li key={restaurant.name} className="list-none">
               <div
                 className={
-                  "w-80 h-96 border-8 rounded-xl text-left border-slate-300 text-black bg-slate-200 flex-wrap"
+                  "w-80 border-8 rounded-xl text-left border-slate-300 text-black bg-slate-200 flex-wrap"
                 }
               >
                 {restaurant.rating ? (

@@ -23,6 +23,7 @@ function Hero() {
   const [keyWords, setKeyWords] = useState<string>([]); // [Pizza, Fast-food, ~15$...
   const [showDraw, setShowDraw] = useState(true);
   const [showBack, setShowBack] = useState(false);
+  const [showGenerate, setShowGenerate] = useState(true);
   const [progress, setProgress] = useState(0);
 
   const fillerWords = [
@@ -84,7 +85,7 @@ function Hero() {
       newPrompt += fillerWords[i] + keyWords[i].toLowerCase();
     }
     (newPrompt +=
-      ". Format the answer in a one-line json as a numbered list where each restaurant has a name, address, website, review around 150 characters, and rating out of 10. Give me 2 options."),
+      ". Format the answer in a one-line json as a numbered list where each restaurant has a name, address, website, review around 150 characters, and rating out of 10. Give me 3 options."),
       console.log(newPrompt);
     requestResponse(newPrompt);
   }
@@ -138,6 +139,7 @@ function Hero() {
     setShowDraw(true);
     setShowBack(false);
     setProgress(0);
+    setShowGenerate(true);
   };
 
   const handleAnswerOptionClick = () => {
@@ -221,13 +223,21 @@ function Hero() {
         <div className="optionSelector w-11/12 mx-auto my-4 justify-center rounded-xl bg-slate-500 border-8 border-slate-600 px-10 py-4">
           {showingResponseTrigger ? (
             <div className="flex answer-buttons flex-wrap justify-center">
-              <button
-                className="flex border bg-slate-200 border-slate-200 rounded-xl h-12 hover:bg-slate-300 m-1 px-8 items-center justify-center"
-                type="button"
-                onClick={generatePrompt}
-              >
-                Show Request
-              </button>
+              {showGenerate ? (
+                <button
+                  className="flex border bg-slate-200 border-slate-200 rounded-xl h-12 hover:bg-slate-300 m-1 px-8 items-center justify-center"
+                  type="button"
+                  onClick={() => {
+                    generatePrompt();
+                    setShowGenerate(false);
+                  }}
+                >
+                  Generate
+                </button>
+              ) : (
+                <></>
+              )}
+
               <button
                 className="flex border bg-slate-200 border-slate-200 rounded-xl h-12 hover:bg-slate-300 m-1 px-8 items-center justify-center"
                 type="button"
