@@ -3,7 +3,7 @@ import "./Footer.css";
 
 const Footer = () => {
 	return (
-		<footer className='marketing-footer'>
+		<footer className='marketing-footer h-24 flex justify-between'>
 			<div className='footer-content'>
 				<img
 					className='LogoImg'
