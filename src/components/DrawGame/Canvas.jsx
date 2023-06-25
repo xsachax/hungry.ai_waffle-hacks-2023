@@ -35,6 +35,11 @@ const Canvas = React.forwardRef((props, ref) => {
     }
   };
 
+  const clearCanvas = () => {
+    const context = ref.current.getContext("2d");
+    context.fillRect(0, 0, 300, 300);
+  };
+
   useEffect(() => {
     const canvas = ref.current;
     const context = canvas.getContext("2d");
@@ -44,16 +49,27 @@ const Canvas = React.forwardRef((props, ref) => {
   });
 
   return (
-    <div className="flex border-8 border-gray-400">
-      <canvas
-        height={300}
-        width={300}
-        ref={ref}
-        onMouseDown={() => (mouseDown = true)}
-        onMouseUp={handleMouseup}
-        onMouseMove={(e) => handleMousemove(e)}
-      ></canvas>
-    </div>
+    <>
+      <div className="flex border-8 border-gray-400">
+        <canvas
+          height={300}
+          width={300}
+          ref={ref}
+          onMouseDown={() => (mouseDown = true)}
+          onMouseUp={handleMouseup}
+          onMouseMove={(e) => handleMousemove(e)}
+        ></canvas>
+      </div>
+      <div className="flex w-full justify-end">
+        <button
+          className="border border-black border-1 text-s rounded-xl px-2 mx-2 text-center bg-red-300 hover:bg-red-400"
+          type="button"
+          onClick={clearCanvas}
+        >
+          X
+        </button>
+      </div>
+    </>
   );
 });
 

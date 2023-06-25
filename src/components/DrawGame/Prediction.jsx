@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { predict } from "./helpers";
 
-const Prediction = ({ theCanvas, model, handleDrawOptionSelected }) => {
+const Prediction = ({ theCanvas, model, handleClick }) => {
   const [prediction, setPrediction] = useState(""); // Sets default label to empty string.
 
   // checking that canvas is empty or not
@@ -32,16 +32,16 @@ const Prediction = ({ theCanvas, model, handleDrawOptionSelected }) => {
   });
 
   return (
-    <div className="column my-2 justify-center gap-2 h-24">
+    <div className="column my-2 justify-center h-24">
       {prediction.length === 0 ? (
         <h3 className="text-black text-xl">Draw up here</h3>
       ) : (
         <>
-          <h3 className="text-black text-xl">This looks like a</h3>
+          <h3 className="text-black text-xl">I think this is...</h3>
           <br />
           <button
             onClick={() => {
-              /*handleDrawOptionSelected(prediction);*/
+              handleClick(prediction);
             }}
             className="mx-4 border bg-slate-200 border-slate-200 rounded-xl text-center hover:bg-slate-300 pointer px-16"
           >
