@@ -190,7 +190,6 @@ function Hero() {
 											<CircularProgressbarWithChildren
 												className='progressbar flex align-center justify-center h-96'
 												value={progress}
-												//text={`${progress}%`}
 												styles={buildStyles({
 													strokeLinecap: "round",
 													textSize: "16px",
@@ -201,7 +200,6 @@ function Hero() {
 													backgroundColor: "#3e98c7",
 												})}
 											>
-												{/* Put any JSX content in here that you'd like. It'll be vertically and horizonally centered. */}
 												<img
 													style={{
 														width: 200,
