@@ -33,13 +33,3 @@
     height: 300px;
   }
 }
-
-.question-text {
-  border-radius: 100px;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  padding-top: 20px;
-  background-color: white;
-  box-shadow: 2px 4px 5px #000000;
-}
