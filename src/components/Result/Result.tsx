@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./Result.css";
 import pin from "../../assets/pin.png";
 import star from "../../assets/star.png";
