@@ -6,11 +6,6 @@ import Result from "../Result/Result.tsx";
 import "./Hero.css";
 import { TypeAnimation } from "react-type-animation";
 import {
-  AwesomeButton,
-  AwesomeButtonProgress,
-  AwesomeButtonSocial,
-} from "react-awesome-button";
-import {
   buildStyles,
   CircularProgressbarWithChildren,
 } from "react-circular-progressbar";
@@ -133,19 +128,6 @@ function Hero() {
       setShowBack(false);
     }
     setProgress(progress - 25);
-  };
-
-  const resetRequest = () => {
-    setShowingResponse(false);
-    setShowingResponseTrigger(false);
-    setCurrentQuestion(0);
-    setFieldValue("");
-    setKeyWords([]);
-    setPrompt("");
-    setShowDraw(true);
-    setShowBack(false);
-    setProgress(0);
-    setShowGenerate(false);
   };
 
   const handleAnswerOptionClick = () => {
