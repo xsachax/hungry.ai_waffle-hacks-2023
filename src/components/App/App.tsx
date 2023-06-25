@@ -12,8 +12,9 @@ function App() {
   return (
     <>
       <div className="flex w-full m-auto border-gray-600 border-8 rounded-2xl bg-gray-700 p-8">
+        <Navbar />
         <Prompt />
-        {/*<Footer />*/}
+        <Footer />
       </div>
     </>
   );
