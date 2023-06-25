@@ -4,7 +4,12 @@ import { Canvas } from "../DrawGame/Canvas.jsx";
 import Prediction from "../DrawGame/Prediction.jsx";
 import Result from "../Result/Result.tsx";
 import "./Hero.css";
-import { CircularProgressbarWithChildren } from "react-circular-progressbar";
+import {
+	CircularProgressbar,
+	buildStyles,
+	CircularProgressbarWithChildren,
+} from "react-circular-progressbar";
+import loading from "../../assets/loading.gif";
 
 import * as tf from "@tensorflow/tfjs";
 const model = tf.loadLayersModel("./model/model.json");
@@ -20,6 +25,7 @@ function Hero() {
 	const [prompt, setPrompt] = useState("");
 	const [showDraw, setShowDraw] = useState(true);
 	const [showBack, setShowBack] = useState(false);
+	const [progress, setProgress] = useState(0);
 
 	const fillerWords = [
 		"Give me the top 3 best places to eat ",
@@ -118,6 +124,7 @@ function Hero() {
 		setPrompt("");
 		setShowDraw(true);
 		setShowBack(false);
+		setProgress(0);
 	};
 
 	const handleAnswerOptionClick = () => {
@@ -129,6 +136,7 @@ function Hero() {
 		} else {
 			setShowingResponseTrigger(true);
 		}
+		setProgress(progress + 25);
 	};
 
 	const handleDrawOptionSelected = (prediction) => {
@@ -163,7 +171,34 @@ function Hero() {
 											/>
 										</div>
 									) : (
-										<div className='calculateText h-96'>Calculating...</div>
+										<div className='calculateText h-96'>
+											<CircularProgressbarWithChildren
+												className='progressbar flex align-center justify-center h-96'
+												value={progress}
+												//text={`${progress}%`}
+												styles={buildStyles({
+													strokeLinecap: "round",
+													textSize: "16px",
+													pathTransitionDuration: 0.5,
+													pathColor: `rgba(255, 212, 105, ${progress / 100})`,
+													textColor: "#f88",
+													trailColor: "#d6d6d6",
+													backgroundColor: "#3e98c7",
+												})}
+											>
+												{/* Put any JSX content in here that you'd like. It'll be vertically and horizonally centered. */}
+												<img
+													style={{
+														width: 200,
+														marginTop: -60,
+														marginRight: 30,
+													}}
+													src={loading}
+													alt='loading'
+												/>
+											</CircularProgressbarWithChildren>
+											;
+										</div>
 									)}
 								</div>
 							</>
